@@ -5,11 +5,11 @@ one:
   zipcode: 1
   city: MyString
   phone: MyString
-  country: MyString
+  country_id: 
 
 two:
   address: MyText
   zipcode: 1
   city: MyString
   phone: MyString
-  country: MyString
+  country_id: 
