@@ -14,4 +14,12 @@ RSpec.describe Rating, :type => :model do
     expect(FactoryGirl.build :rating, rating: "string").not_to be_valid
   end
 
+  it "belongs to customer" do
+    expect(FactoryGirl.build :rating).to respond_to :customer
+  end
+
+  it "belongs to book" do
+    expect(FactoryGirl.build :rating).to respond_to :book
+  end
+
 end
