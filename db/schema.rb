@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141222000757) do
+ActiveRecord::Schema.define(version: 20150104142246) do
 
   create_table "addresses", force: true do |t|
     t.text     "address"
@@ -99,12 +99,12 @@ ActiveRecord::Schema.define(version: 20141222000757) do
     t.datetime "completed_date"
     t.string   "state"
     t.integer  "customer_id"
-    t.integer  "creditcard_id"
+    t.integer  "credit_card_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "orders", ["creditcard_id"], name: "index_orders_on_creditcard_id"
+  add_index "orders", ["credit_card_id"], name: "index_orders_on_credit_card_id"
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id"
 
   create_table "ratings", force: true do |t|
