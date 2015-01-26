@@ -1,4 +1,17 @@
 RGAmazon::Application.routes.draw do
+
+  scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
+
+  resources :books
+  resources :authors
+  resources :categories
+
+  root to: 'books#index'
+  end
+
+   match '*path', to: redirect("/#{I18n.default_locale}/%{path}"), via: :all
+   match '', to: redirect("/#{I18n.default_locale}"), via: :all
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

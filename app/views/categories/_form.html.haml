@@ -1,0 +1,9 @@
+.row-fluid
+  .span4.offset2
+    = form_for Category.new do |f|
+
+      .field
+        = f.label :title
+        = f.text_field :title
+      .actions
+        = f.submit nil, class: "btn"

@@ -23,5 +23,7 @@ RSpec.describe Book, :type => :model do
   it "belongs to category" do
     expect(FactoryGirl.build :book).to respond_to :category
   end
+  it { should have_many(:order_items) }
+  it { should have_many(:ratings).through (:customer) }
 
 end

@@ -1,0 +1,24 @@
+.row-fluid
+  .span4.offset2
+    = form_for Book.new do |f|
+
+      .field
+        = f.label :title
+        = f.text_field :title
+      .field
+        = f.label :author
+        = f.text_field :author
+      .field
+        = f.label :category
+        = f.text_field :category
+      .field
+        = f.label :price
+        = f.text_field :price
+      .field
+        = f.label :stock
+        = f.text_field :stock
+      .field
+        = f.label :description
+        = f.text_area :description, :size => "18x6"
+      .actions
+        = f.submit nil, class: "btn"
