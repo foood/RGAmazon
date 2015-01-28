@@ -1,2 +1,17 @@
 %h1 Authors#index
-%p Find me in app/views/authors/index.html.haml
+%table.table.table-striped
+  %thead
+    %th first_name
+    %th last_name
+    %th Biography
+    %th
+  %tbody
+    - @authors.each do |author|
+      %tr
+        %td= author.first_name
+        %td= author.last_name
+        %td= author.biography
+        %td= link_to 'View Details', author, remote: true
+%br/
+= render "layouts/modal"
+= link_to raw("<i class=icon-plus></i> New Author"), new_author_path, class: "btn"

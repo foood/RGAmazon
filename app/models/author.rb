@@ -1,6 +1,10 @@
 class Author < ActiveRecord::Base
+  attr_accessor :full_name
   has_many :books
 
-  validates :firstname, presence: true
-  validates :lastname, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  def full_name
+    "#{first_name.first}. #{last_name}"
+  end
 end

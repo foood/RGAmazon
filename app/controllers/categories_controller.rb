@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
     @categories = Category.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @categories }
     end
   end
@@ -21,7 +21,7 @@ class CategoriesController < ApplicationController
       end
     end
   end
-  private
+
   def category_params
     params.require(:category).permit(:title)
   end
@@ -30,20 +30,35 @@ class CategoriesController < ApplicationController
     @category = Category.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @category }
     end
   end
 
   def edit
+    @category = Category.find(params[:id])
   end
 
   def show
+    @category = Category.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.js
+      format.json { render json: @category }
+    end
   end
 
   def update
   end
 
   def destroy
+    @category = Category.find(params[:id])
+    @category.destroy
+
+    respond_to do |format|
+      format.html { redirect_to categories_url, notice: 'Category was successfully destroy.' }
+      format.json { head :no_content }
+    end
   end
 end

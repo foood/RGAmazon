@@ -4,8 +4,8 @@ FactoryGirl.define do
     ccv 123
     expiration_month 12
     expiration_year 2016
-    firstname {Faker::Name.first_name}
-    lastname {Faker::Name.last_name}
+    first_name {Faker::Name.first_name}
+    last_name {Faker::Name.last_name}
     customer {FactoryGirl.create :customer}
   end
 

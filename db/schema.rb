@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150104142246) do
+ActiveRecord::Schema.define(version: 20150127185519) do
 
   create_table "addresses", force: true do |t|
     t.text     "address"
-    t.integer  "zipcode"
+    t.integer  "zip_code"
     t.string   "city"
     t.string   "phone"
     t.integer  "country_id"
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20150104142246) do
   add_index "addresses", ["country_id"], name: "index_addresses_on_country_id"
 
   create_table "authors", force: true do |t|
-    t.string   "firstname"
-    t.string   "lastname"
+    t.string   "first_name"
+    t.string   "last_name"
     t.text     "biography"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -64,23 +64,14 @@ ActiveRecord::Schema.define(version: 20150104142246) do
     t.integer  "ccv"
     t.integer  "expiration_month"
     t.integer  "expiration_year"
-    t.string   "firstname"
-    t.string   "lastname"
-    t.integer  "customer_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "credit_cards", ["customer_id"], name: "index_credit_cards_on_customer_id"
-
-  create_table "customers", force: true do |t|
-    t.string   "firstname"
-    t.string   "lastname"
-    t.string   "email"
-    t.string   "password"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "credit_cards", ["user_id"], name: "index_credit_cards_on_user_id"
 
   create_table "order_items", force: true do |t|
     t.float    "price"
@@ -98,25 +89,47 @@ ActiveRecord::Schema.define(version: 20150104142246) do
     t.float    "amount"
     t.datetime "completed_date"
     t.string   "state"
-    t.integer  "customer_id"
+    t.integer  "user_id"
     t.integer  "credit_card_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "orders", ["credit_card_id"], name: "index_orders_on_credit_card_id"
-  add_index "orders", ["customer_id"], name: "index_orders_on_customer_id"
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
   create_table "ratings", force: true do |t|
     t.text     "review"
     t.integer  "rating"
-    t.integer  "customer_id"
+    t.integer  "user_id"
     t.integer  "book_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "ratings", ["book_id"], name: "index_ratings_on_book_id"
-  add_index "ratings", ["customer_id"], name: "index_ratings_on_customer_id"
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
+
+  create_table "users", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "first_name"
+    t.string   "last_name"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

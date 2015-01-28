@@ -1,7 +1,8 @@
 class Book < ActiveRecord::Base
+  attr_accessor :author, :category
   belongs_to :category
   belongs_to :author
-  has_many :ratings, through: :customers
+  has_many :ratings
   has_many :order_items
 
   validates :title, presence: {:message => 'title cannot be blank'}

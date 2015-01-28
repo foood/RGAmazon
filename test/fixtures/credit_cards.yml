@@ -5,8 +5,8 @@ one:
   ccv: 1
   expiration_month: 1
   expiration_year: 1
-  firstname: MyString
-  lastname: MyString
+  first_name: MyString
+  last_name: MyString
   customer_id: 
 
 two:
@@ -14,6 +14,6 @@ two:
   ccv: 1
   expiration_month: 1
   expiration_year: 1
-  firstname: MyString
-  lastname: MyString
+  first_name: MyString
+  last_name: MyString
   customer_id: 

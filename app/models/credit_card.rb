@@ -1,6 +1,6 @@
 class CreditCard < ActiveRecord::Base
-  belongs_to :customer
+  belongs_to :user
   has_many :orders
 
-  validates :ccv, :expiration_month, :expiration_year, :firstname, :lastname, presence: true
+  validates :ccv, :expiration_month, :expiration_year, :first_name, :last_name, presence: true
 end

@@ -1,2 +1,21 @@
 %h1 Books#show
-%p Find me in app/views/books/show.html.haml
+%p#notice= notice
+%p
+  %b author:
+  = @book.author
+%p
+  %b category:
+  = @book.category
+%p
+  %b title:
+  = @book.title
+%p
+  %b price:
+  = number_to_currency(@book.price)
+%p
+  %b in stock:
+  = @book.stock
+= link_to 'Edit', edit_book_path(@book)
+|
+#{link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' }} |
+#{link_to 'Back', books_path}

@@ -1,2 +1,13 @@
 %h1 Categories#index
-%p Find me in app/views/categories/index.html.haml
+%table.table.table-striped
+  %thead
+    %th Title:
+    %th
+  %tbody
+    - @categories.each do |category|
+      %tr
+        %td= category.title
+        %td= link_to 'View Details', category, remote: true
+%br/
+= render "layouts/modal"
+= link_to raw("<i class=icon-plus></i> New Category"), new_category_path, class: "btn"

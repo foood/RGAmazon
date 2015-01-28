@@ -1,2 +1,15 @@
 %h1 Authors#show
-%p Find me in app/views/authors/show.html.haml
+%p#notice= notice
+%p
+  %b first_name:
+  = @author.first_name
+%p
+  %b last_name:
+  = @author.last_name
+%p
+  %b Biography:
+  = @author.biography
+= link_to 'Edit', edit_author_path(@author)
+|
+#{link_to 'Destroy', @author, method: :delete, data: { confirm: 'Are you sure?' }} |
+#{link_to 'Back', authors_path}

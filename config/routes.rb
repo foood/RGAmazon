@@ -1,17 +1,24 @@
 RGAmazon::Application.routes.draw do
 
+  get "home/index"
+  devise_for :users, path: "auth", path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
+
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
+    root to: 'home#index'
 
   resources :books
   resources :authors
   resources :categories
+  resources :users
 
-  root to: 'books#index'
+
   end
 
    match '*path', to: redirect("/#{I18n.default_locale}/%{path}"), via: :all
    match '', to: redirect("/#{I18n.default_locale}"), via: :all
-
+  # match "/users/auth/:provider", constraints: { provider: /google|facebook/ }, to: "devise/omniauth_callbacks#passthru", as: :omniauth_authorize, via: [:get, :post]
+  # match "/users/auth/:action/callback", constraints: { action: /google|facebook/ }, to: "devise/omniauth_callbacks", as: :omniauth_callback, via: [:get, :post]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

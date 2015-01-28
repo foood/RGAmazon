@@ -5,9 +5,9 @@ class CreateCreditCards < ActiveRecord::Migration
       t.integer :ccv
       t.integer :expiration_month
       t.integer :expiration_year
-      t.string :firstname
-      t.string :lastname
-      t.references :customer, index: true
+      t.string :first_name
+      t.string :last_name
+      t.references :user, index: true
 
       t.timestamps
     end

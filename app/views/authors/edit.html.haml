@@ -1,2 +1,5 @@
 %h1 Authors#edit
-%p Find me in app/views/authors/edit.html.haml
+= render 'form'
+= link_to 'Show', @author
+|
+#{link_to 'Back', authors_path}

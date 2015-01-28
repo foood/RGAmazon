@@ -4,7 +4,7 @@ class BooksController < ApplicationController
     @books = Book.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @books }
     end
   end
@@ -22,7 +22,7 @@ class BooksController < ApplicationController
       end
     end
   end
-  private
+
   def book_params
     params.require(:book).permit(:title, :author, :category, :price, :stock, :description)
   end
@@ -30,7 +30,7 @@ class BooksController < ApplicationController
     @book = Book.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @book }
     end
   end
@@ -39,11 +39,23 @@ class BooksController < ApplicationController
   end
 
   def show
+    @book = Book.find(params[:id])
   end
 
   def update
   end
 
   def destroy
+    @book = Book.find(params[:id])
+    @book.destroy
+
+    respond_to do |format|
+      format.html { redirect_to books_url, notice: 'Book was successfully destroy.' }
+      format.json { head :no_content }
+    end
   end
+  def author
+
+  end
+
 end

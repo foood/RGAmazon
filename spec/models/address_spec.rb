@@ -9,7 +9,7 @@ RSpec.describe Address, :type => :model do
   end
 
   it "is invalid without an zipcode" do
-    expect(FactoryGirl.build :address, zipcode: nil).not_to be_valid
+    expect(FactoryGirl.build :address, zip_code: nil).not_to be_valid
   end
 
   it "is invalid without an city" do

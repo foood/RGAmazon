@@ -4,7 +4,7 @@ class CreateOrders < ActiveRecord::Migration
       t.float :amount
       t.datetime :completed_date
       t.string :state
-      t.references :customer, index: true
+      t.references :user, index: true
       t.references :credit_card, index: true
 
       t.timestamps
