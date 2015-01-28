@@ -1,5 +1,4 @@
 class Author < ActiveRecord::Base
-  attr_accessor :full_name
   has_many :books
 
   validates :first_name, presence: true

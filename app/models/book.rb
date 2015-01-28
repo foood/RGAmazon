@@ -1,5 +1,4 @@
 class Book < ActiveRecord::Base
-  attr_accessor :author, :category
   belongs_to :category
   belongs_to :author
   has_many :ratings
