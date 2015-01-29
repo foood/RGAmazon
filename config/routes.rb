@@ -10,6 +10,7 @@ RGAmazon::Application.routes.draw do
     resources :authors
     resources :categories
     resources :users
+    resources :adresses
 
   end
   get '*path', to: redirect("/#{I18n.default_locale}/%{path}"), constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }

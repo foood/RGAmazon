@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150128162913) do
+ActiveRecord::Schema.define(version: 20150129003137) do
 
   create_table "addresses", force: true do |t|
     t.text     "address"
@@ -110,6 +110,12 @@ ActiveRecord::Schema.define(version: 20150128162913) do
   add_index "ratings", ["book_id"], name: "index_ratings_on_book_id"
   add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
 
+  create_table "roles", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -133,6 +139,7 @@ ActiveRecord::Schema.define(version: 20150128162913) do
     t.integer  "failed_attempts",        default: 0
     t.string   "unlock_token"
     t.datetime "locked_at"
+    t.integer  "role_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
