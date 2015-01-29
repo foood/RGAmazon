@@ -6,6 +6,9 @@ RGAmazon::Application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+  #config Locale
+  config.i18n.available_locales = [:en, :ru]
+
   # Do not eager load code on boot.
   config.eager_load = false
 

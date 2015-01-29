@@ -1,13 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Author, :type => :model do
-  let(:author) {FactoryGirl.create :author}
 
-  it "is invalid without an first_name" do
-    expect(FactoryGirl.build :author, first_name: nil).not_to be_valid
-  end
+  it { should have_many :books }
 
-  it "is invalid without an last_name" do
-    expect(FactoryGirl.build :author, last_name: nil).not_to be_valid
-  end
+  it { should validate_presence_of(:first_name)}
+  it { should validate_presence_of(:last_name)}
+
 end

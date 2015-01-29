@@ -4,7 +4,7 @@ class Book < ActiveRecord::Base
   has_many :ratings
   has_many :order_items
 
-  validates :title, presence: {:message => 'title cannot be blank'}
-  validates :price, presence: {:message => 'price cannot be blank'}
-  validates :stock, presence: {:message => 'stock cannot be blank'}
+  validates :title, presence: {:message => 'Title cannot be blank'}
+  validates :price, presence: {:message => 'Price cannot be blank'}
+  validates :stock, presence: {:message => 'Stock cannot be blank'}
 end

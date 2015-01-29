@@ -2,12 +2,10 @@ require 'rails_helper'
 
 RSpec.describe OrderItem, :type => :model do
 
-  it "is invalid without an price" do
-    expect(FactoryGirl.build :order_item, price: nil).not_to be_valid
-  end
+  it { should belong_to :order }
+  it { should belong_to :book }
 
-  it "is invalid without an quantity" do
-    expect(FactoryGirl.build :order_item, quantity: nil).not_to be_valid
-  end
+  it { should validate_presence_of :price }
+  it { should validate_presence_of :quantity }
 
 end

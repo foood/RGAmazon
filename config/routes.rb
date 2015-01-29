@@ -1,6 +1,6 @@
 RGAmazon::Application.routes.draw do
 
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
 

@@ -2,28 +2,13 @@ require 'rails_helper'
 
 RSpec.describe CreditCard, :type => :model do
 
-  it "is invalid without an ccv" do
-    expect(FactoryGirl.build :credit_card, ccv: nil).not_to be_valid
-  end
+  it { should belong_to :user }
+  it { should have_many :orders }
 
-  it "is invalid without an expiration_month" do
-    expect(FactoryGirl.build :credit_card, expiration_month: nil).not_to be_valid
-  end
-
-  it "is invalid without an expiration_year" do
-    expect(FactoryGirl.build :credit_card, expiration_year: nil).not_to be_valid
-  end
-
-  it "is invalid without an first_name" do
-    expect(FactoryGirl.build :credit_card, first_name: nil).not_to be_valid
-  end
-
-  it "is invalid without an last_name" do
-    expect(FactoryGirl.build :credit_card, last_name: nil).not_to be_valid
-  end
-
-  it "belongs to customer" do
-    expect(FactoryGirl.build :credit_card).to respond_to :customer
-  end
+  it { should validate_presence_of :ccv }
+  it { should validate_presence_of :expiration_month }
+  it { should validate_presence_of :expiration_year }
+  it { should validate_presence_of :first_name }
+  it { should validate_presence_of :last_name }
 
 end

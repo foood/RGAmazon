@@ -2,29 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Address, :type => :model do
 
-  let(:address) {FactoryGirl.create :address}
+  it { should belong_to :country }
 
-  it "is invalid without an address" do
-    expect(FactoryGirl.build :address, address: nil).not_to be_valid
-  end
+  it { should validate_presence_of(:address)}
+  it { should validate_presence_of(:zip_code)}
+  it { should validate_presence_of(:city)}
+  it { should validate_presence_of(:phone)}
+  it { should validate_presence_of(:country)}
 
-  it "is invalid without an zipcode" do
-    expect(FactoryGirl.build :address, zip_code: nil).not_to be_valid
-  end
-
-  it "is invalid without an city" do
-    expect(FactoryGirl.build :address, city: nil).not_to be_valid
-  end
-
-  it "is invalid without an phone" do
-    expect(FactoryGirl.build :address, phone: nil).not_to be_valid
-  end
-
-  it "is invalid without an country" do
-    expect(FactoryGirl.build :address, country: nil).not_to be_valid
-  end
-
-  it "belongs to country" do
-    expect(FactoryGirl.build :address).to respond_to :country
-  end
 end

@@ -57,7 +57,8 @@ gem 'haml-rails'
 gem 'sass'
 
 gem 'bootstrap-sass'
-
+gem 'i18n'
+gem 'rails-i18n', '~> 4.0.0'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -65,7 +66,6 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'i18n'
   gem 'faker'
   gem 'capybara' #acceptance test framework for web applications. https://github.com/jnicklas/capybara
 end
