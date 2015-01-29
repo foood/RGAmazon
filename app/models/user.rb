@@ -21,11 +21,12 @@ class User < ActiveRecord::Base
 
 
   def set_default_role
-
-
       self.role ||= Role.find_by_name('customer')
 
+  end
 
+  def admin?
+    self.role.try(:name) == "admin"
 
   end
 

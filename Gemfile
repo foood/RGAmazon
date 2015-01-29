@@ -6,26 +6,8 @@ gem 'rails', '4.0.5'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.2'
-
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
-
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
 
 #Flexible authentication solution for Rails with Warden: https://github.com/plataformatec/devise
 gem 'devise'
@@ -53,10 +35,29 @@ gem 'mini_magick'
 
 #HTML abstraction markup language. http://haml.info
 gem 'haml-rails'
-#CSS with superpowers. http://sass-lang.com
-gem 'sass'
+gem 'erb2haml'
 
-gem 'bootstrap-sass'
+# Use jquery as the JavaScript library
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+
+# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'turbolinks'
+
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 1.2'
+
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 1.3.0'
+
+# Use CoffeeScript for .js.coffee assets and views
+gem 'coffee-rails', '~> 4.0.0'
+
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 4.0.2'
+gem 'bootstrap-sass' #https://github.com/twbs/bootstrap-sass
+
+gem 'simple_form' #https://github.com/plataformatec/simple_form
 gem 'i18n'
 gem 'rails-i18n', '~> 4.0.0'
 group :doc do
