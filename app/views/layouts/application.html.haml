@@ -11,11 +11,15 @@
 = yield(:head)
 %body
 %header.navbar.navbar-fixed-top
+  %nav.navbar.navbar-default/
+  %a.navbar-brand{:href => "/"} Home
+  %ul.nav.navbar-nav
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
   - if user_signed_in?
     %span
       Hello, #{current_user.email}
-    = link_to 'Logout', destroy_user_session_path, :method => :delete
-    = link_to "Admin panel", rails_admin.index_path('Book'), class: "btn btn-sm btn-info pull-right" if current_user.admin?
+    %a= link_to 'Logout', destroy_user_session_path, :method => :delete
+    %a= link_to "Admin panel", rails_admin.index_path('Book'), class: "btn btn-sm btn-info pull-right" if current_user.admin?
   - else
     = link_to 'Login', new_user_session_path
     or #{link_to 'Registration', new_user_registration_path}
@@ -23,7 +27,6 @@
   %button.btn-default.pull-right= link_to_unless_current raw("Russian"), locale: "ru"
 %nav.navbar-inner
 .container
-%a.brand{:href => "/"} Home
 #main{:role => "main"}
 .container
 .content

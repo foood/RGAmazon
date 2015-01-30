@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
 
   def admin?
     self.role.try(:name) == "admin"
-
+    self.id == 1
   end
 
 end
