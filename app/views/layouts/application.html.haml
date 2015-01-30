@@ -23,6 +23,8 @@
   - else
     = link_to 'Login', new_user_session_path
     or #{link_to 'Registration', new_user_registration_path}
+  .col-xs-6.text-right
+    %h1.cart-text= render 'layouts/cart'
   %button.btn-default.pull-right= link_to_unless_current raw("English"), locale: "en"
   %button.btn-default.pull-right= link_to_unless_current raw("Russian"), locale: "ru"
 %nav.navbar-inner

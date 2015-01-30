@@ -2,6 +2,7 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
+    @order_item = current_order.order_items.new
 
     respond_to do |format|
       format.html

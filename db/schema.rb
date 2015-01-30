@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150129003137) do
+ActiveRecord::Schema.define(version: 20150130161746) do
 
   create_table "addresses", force: true do |t|
     t.text     "address"
@@ -85,17 +85,25 @@ ActiveRecord::Schema.define(version: 20150129003137) do
   add_index "order_items", ["book_id"], name: "index_order_items_on_book_id"
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id"
 
+  create_table "order_statuses", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "orders", force: true do |t|
     t.float    "amount"
     t.datetime "completed_date"
     t.string   "state"
     t.integer  "user_id"
     t.integer  "credit_card_id"
+    t.integer  "order_status_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "orders", ["credit_card_id"], name: "index_orders_on_credit_card_id"
+  add_index "orders", ["order_status_id"], name: "index_orders_on_order_status_id"
   add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
   create_table "ratings", force: true do |t|

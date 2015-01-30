@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   belongs_to :role
+  has_one  :cart
   has_many :orders
   has_many :ratings
   has_many :credit_cards

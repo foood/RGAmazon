@@ -19,4 +19,9 @@
         %td= link_to raw("Edit"), edit_book_path(book), class: "btn btn-sm btn-warning"
         %td= link_to raw("Destroy"), book, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger"
 %br/
+%h3.text-center books for Sale
+.row
+  .col-xs-6.col-xs-offset-3
+    - @books.each do |book|
+      = render "book_row", book: book, order_item: @order_item
 = link_to raw("New Book"), new_book_path, class: "btn btn-success"

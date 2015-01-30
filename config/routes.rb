@@ -1,5 +1,6 @@
 RGAmazon::Application.routes.draw do
 
+
   devise_for :users, :controllers => { registrations: 'registrations' }
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
@@ -11,6 +12,8 @@ RGAmazon::Application.routes.draw do
     resources :categories
     resources :users
     resources :adresses
+    resource :cart, only: [:show]
+    resources :order_items, only: [:create, :update, :destroy]
 
   end
   get '*path', to: redirect("/#{I18n.default_locale}/%{path}"), constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }

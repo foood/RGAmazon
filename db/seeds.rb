@@ -8,3 +8,6 @@
 ['customer', 'banned', 'moderator', 'admin'].each do |role|
   Role.find_or_create_by({name: role})
 end
+['In Progress', 'Placed', 'Shipped', 'Cancelled'].each do |status|
+  OrderStatus.find_or_create_by({name: status})
+end
