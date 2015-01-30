@@ -1,1 +1,9 @@
-= link_to "#{current_order.order_items.size} Items in Cart ( #{number_to_currency current_order.subtotal} )", cart_path, class: "btn btn-link"
+%li.nav.nav-pills{:role => "tablist"}
+  %li.active{:role => "navigation"}
+    %a{:href => cart_path}
+      %span.glyphicon.glyphicon-shopping-cart{"aria-hidden" => "true"}
+
+      %span.badge #{current_order.order_items.size} total
+      %span.badge  #{number_to_currency current_order.subtotal}
+/= link_to "#{current_order.order_items.size} Items in Cart ( #{number_to_currency current_order.subtotal} )", cart_path, class: "btn btn-link"
+

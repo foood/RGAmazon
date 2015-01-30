@@ -21,8 +21,6 @@ gem 'omniauth-facebook'
 #Rails engine that provides an easy-to-use interface for managing your data. https://github.com/sferik/rails_admin
 gem 'rails_admin'
 
-gem 'carter'
-
 #Authorization Gem for Ruby on Rails. https://github.com/CanCanCommunity/cancancan
 gem 'cancancan', '~> 1.10'
 

@@ -10,23 +10,53 @@
 = csrf_meta_tags
 = yield(:head)
 %body
-%header.navbar.navbar-fixed-top
-  %nav.navbar.navbar-default/
-  %a.navbar-brand{:href => "/"} Home
-  %ul.nav.navbar-nav
+%nav.navbar.navbar-default.navbar-fixed-top
+  .container-fluid
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "/"} Home
+    / Collect the nav links, forms, and other content for toggling
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
-  - if user_signed_in?
-    %span
-      Hello, #{current_user.email}
-    %a= link_to 'Logout', destroy_user_session_path, :method => :delete
-    %a= link_to "Admin panel", rails_admin.index_path('Book'), class: "btn btn-sm btn-info pull-right" if current_user.admin?
-  - else
-    = link_to 'Login', new_user_session_path
-    or #{link_to 'Registration', new_user_registration_path}
-  .col-xs-6.text-right
-    %h1.cart-text= render 'layouts/cart'
-  %button.btn-default.pull-right= link_to_unless_current raw("English"), locale: "en"
-  %button.btn-default.pull-right= link_to_unless_current raw("Russian"), locale: "ru"
+      %ul.nav.navbar-nav
+        %li.active
+          %a{:href => "#"}
+            Link
+            %span.sr-only (current)
+        %li
+          %a{:href => "#"} Link
+      %form.navbar-form.navbar-left{:role => "search"}
+        .form-group
+          %input.form-control{:placeholder => "Search", :type => "text"}
+        %button.btn.btn-default{:type => "submit"} Submit
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          %li= link_to "Hello #{current_user.first_name}"
+          %li= link_to 'Logout', destroy_user_session_path, :method => :delete
+          %li= link_to "Admin panel", rails_admin.index_path('Book') if current_user.admin?
+        - else
+          %li
+            %a{:href => new_user_session_path} Login
+          %li
+            %a{:href => new_user_registration_path} Registration
+          %li
+
+        %li.pull-right
+          = render 'layouts/cart'
+        %li.dropdown.pull-right
+          %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            Language
+            %span.caret
+          %ul.dropdown-menu{:role => "menu"}
+            %li
+              %a= link_to_unless_current raw("English"), locale: "en"
+            %li
+              %a= link_to_unless_current raw("Russian"), locale: "ru"
+
 %nav.navbar-inner
 .container
 #main{:role => "main"}
