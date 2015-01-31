@@ -3,6 +3,12 @@
     .col-xs-8
       %h4
         = book.title
+      %h5
+        Author:
+        = book.author.full_name if book.author
+      %h5
+        Category:
+        = book.category.title if book.category
     .col-xs-4
       = form_for order_item, remote: true do |f|
         %h4.text-right
@@ -12,4 +18,4 @@
           = f.number_field :quantity, value: 1, class: "form-control", min: 1
           .input-group-btn
             = f.hidden_field :book_id, value: book.id
-            = f.submit "Add to Cart", class: "btn btn-primary"
+            = f.submit "Add to Cart", class: "btn btn-primary",render: 'nav'

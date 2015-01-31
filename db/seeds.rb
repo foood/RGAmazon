@@ -11,3 +11,8 @@ end
 ['In Progress', 'Placed', 'Shipped', 'Cancelled'].each do |status|
   OrderStatus.find_or_create_by({name: status})
 end
+User.find_or_create_by(email: 'john@doe.net') do |user|
+  user.first_name = "john"
+  user.last_name  = "doe"
+  user.password = "doe123123"
+end
