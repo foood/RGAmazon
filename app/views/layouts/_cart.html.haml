@@ -1,6 +1,6 @@
 %li.nav.nav-pills{:role => "tablist"}
   %li.active{:role => "navigation"}
-    %a{:href => cart_path}
+    %a.cart{:href => cart_path}
       %span.glyphicon.glyphicon-shopping-cart{"aria-hidden" => "true"}
 
       %span.badge #{current_order.order_items.size} total

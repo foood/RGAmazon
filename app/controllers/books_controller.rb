@@ -19,7 +19,7 @@ class BooksController < ApplicationController
         format.html { redirect_to @book, notice: 'Book was successfully created.' }
         format.json { render json: @book, status: :created, location: @book }
       else
-        format.html { render action: "new" }
+        format.html { render action: "new", notice: 'asd' }
         format.json { render json: @book.errors, status: :unprocessable_entity }
       end
     end

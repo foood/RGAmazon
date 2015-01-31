@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130161746) do
+ActiveRecord::Schema.define(version: 20150131200520) do
 
   create_table "addresses", force: true do |t|
     t.text     "address"
@@ -148,6 +148,8 @@ ActiveRecord::Schema.define(version: 20150130161746) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.integer  "role_id"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
