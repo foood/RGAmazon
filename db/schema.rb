@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150131200520) do
+ActiveRecord::Schema.define(version: 20150201021411) do
 
   create_table "addresses", force: true do |t|
     t.text     "address"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20150131200520) do
     t.integer  "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image"
   end
 
   add_index "books", ["author_id"], name: "index_books_on_author_id"
@@ -150,6 +151,7 @@ ActiveRecord::Schema.define(version: 20150131200520) do
     t.integer  "role_id"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
+    t.string   "avatar"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

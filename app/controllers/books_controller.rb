@@ -26,7 +26,7 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:title, :author, :category, :price, :stock, :description)
+    params.require(:book).permit(:title, :author, :category, :price, :stock, :description,:image)
   end
   def new
     @book = Book.new

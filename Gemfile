@@ -17,7 +17,8 @@ gem 'omniauth'
 
 #Facebook OAuth2 Strategy for OmniAuth. https://github.com/mkdynamic/omniauth-facebook
 gem 'omniauth-facebook'
-
+gem 'open_uri_redirections'
+gem 'fog'
 #Rails engine that provides an easy-to-use interface for managing your data. https://github.com/sferik/rails_admin
 gem 'rails_admin'
 

@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  mount_uploader :avatar, AvatarUploader
+
   belongs_to :role
   has_many :orders
   has_many :ratings
@@ -18,8 +20,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :lockable, :omniauthable, :omniauth_providers => [:facebook]
 
-
-
   def set_default_role
       self.role ||= Role.find_by_name('customer')
 
@@ -34,13 +34,32 @@ class User < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-      user.first_name        = auth["info"]["first_name"] unless auth["info"].blank?
-      user.last_name         = auth["info"]["last_name"] unless auth["info"].blank?
+    user = find_by(auth.slice(:provider, :uid)) || initialize_from_omniauth(auth)
+    user.update_dynamic_attributes(auth)
+
     end
-  end
+
+    def self.initialize_from_omniauth(auth)
+      new do |user|
+        user.provider          = auth[:provider]
+        user.uid               = auth[:uid]
+        user.email             = auth.info.email
+        user.password          = Devise.friendly_token[0,20]
+        user.first_name        = auth["info"]["first_name"] unless auth["info"].blank?
+        user.last_name         = auth["info"]["last_name"] unless auth["info"].blank?
+        user.remote_avatar_url = auth.info.image.gsub('http://','https://')
+
+      end
+    end
+
+    def update_dynamic_attributes(auth)
+      self.remote_avatar_url = auth.info.image.gsub('http://','https://')
+      self.password          = Devise.friendly_token[0,20]
+
+      save!
+      self
+
+    end
 
   def admin?
     self.role.try(:name) == "admin"
