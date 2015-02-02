@@ -1,7 +1,9 @@
-.well
-  .row
-    .col-xs-8
-      %h4
+.col-sm-6.col-md-3
+  .thumbnail
+    = link_to book_path(book.id) do
+      %img{:alt => "#{book.image_url}", :src => "#{book.image_url(:medium)}"}
+    .caption
+      %h3
         = book.title
       %h5
         Author:
@@ -9,7 +11,6 @@
       %h5
         Category:
         = book.category.title if book.category
-    .col-xs-4
       = form_for order_item, remote: true do |f|
         %h4.text-right
           Unit Price:
