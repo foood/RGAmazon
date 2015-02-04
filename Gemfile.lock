@@ -288,6 +288,9 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    seed_dump (3.2.1)
+      activerecord (~> 4)
+      activesupport (~> 4)
     sexp_processor (4.4.5)
     shoulda (3.5.0)
       shoulda-context (~> 1.0, >= 1.0.1)
@@ -356,6 +359,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 4.0.2)
   sdoc
+  seed_dump
   shoulda
   shoulda-matchers
   simple_form

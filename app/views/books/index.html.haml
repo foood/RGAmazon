@@ -1,26 +1,11 @@
-%h1 Books#index
-%table.table.table-striped
 
-  %thead
-    %th Title
-    %th Author
-    %th Category
-    %th Price
-    %th
-    %th
-  %tbody
-    - @books.each do |book|
-      %tr
-        %td= book.title
-        %td= book.author
-        %td= book.category
-        %td= number_to_currency(book.price)
-        %td= link_to raw("View"),book_url(book), class: "btn btn-sm btn-info"
-        %td= link_to raw("Edit"), edit_book_path(book), class: "btn btn-sm btn-warning"
-        %td= link_to raw("Destroy"), book, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger"
-= link_to raw("New Book"), new_book_path, class: "btn btn-success"
-%br/
-%h3.text-center books for Sale
-.row
-  - @books.each do |book|
-    = render "book_row", book: book, order_item: @order_item
+%html
+  %body
+    .container
+      %ol.breadcrumb
+        %li
+          %a= link_to "Home",root_path
+          %li.active=  "Library"
+      .row
+      - @books.each do |book|
+        = render "book_row", book: book, order_item: @order_item

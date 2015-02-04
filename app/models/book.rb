@@ -8,7 +8,7 @@ class Book < ActiveRecord::Base
   has_many :order_items, dependent: :destroy
 
   before_create :no_author
-  before_create :uncategorized
+  before_save :uncategorized
   validates :title, presence: {:message => 'Title cannot be blank'}
   validates :price, presence: {:message => 'Price cannot be blank'}
   validates :stock, presence: {:message => 'Stock cannot be blank'}
@@ -22,6 +22,6 @@ class Book < ActiveRecord::Base
 
   def uncategorized
     Category.find_or_create_by(title: 'Uncategorized')
-    self.category = Category.find_by_title('Uncategorized')
+    self.category = Category.find_by_title('Uncategorized') if self.category == nil
   end
 end

@@ -2,6 +2,8 @@ class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :credit_card
   belongs_to :order_status
+  belongs_to :billing_address, :class_name => "Address"
+  belongs_to :shipping_address, :class_name => "Address"
   has_many :order_items, dependent: :destroy
 
   before_validation :update_subtotal, :set_order_status

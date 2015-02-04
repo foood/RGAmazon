@@ -1,21 +1,37 @@
-%h1 Books#show
-%p#notice= notice
-%p
-  %b author:
-  = @book.author
-%p
-  %b category:
-  = @book.category
-%p
-  %b title:
-  = @book.title
-%p
-  %b price:
-  = number_to_currency(@book.price)
-%p
-  %b in stock:
-  = @book.stock
-= link_to 'Edit', edit_book_path(@book)
-|
-#{link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' }} |
-#{link_to 'Back', books_path}
+
+%html
+   
+  %body
+    .container
+      %ol.breadcrumb
+        %li
+          %a= link_to "Home",root_path
+        %li
+          %a= link_to "Library",books_path
+        %li.active= @book.title
+      .row
+        .col-md-4
+          %img{:alt => "#{@book.image_url}", :src => "#{@book.image_url(:large)}"}
+        .col-lg-offset-7.col-lg-pull-1
+          %h1= @book.title
+          %hr
+        .col-md-push-3.col-lg-5
+          %dl
+            %dt Category
+            %dd= @book.category.title
+            %dt Author
+            %dd= @book.author.full_name
+          %hr
+            %p= @book.description
+        .col-md-5.col-md-offset-3
+          %hr
+            %aside
+              = form_for :order_item, remote: true do |f|
+                %h4.text-right
+                  Unit Price:
+                  %span{:style => "color: green"}= number_to_currency @book.price
+                .input-group.col-lg-offset-7
+                  = f.number_field :quantity, value: 1, class: "form-control", min: 1, max: @book.stock
+                  .input-group-btn
+                    = f.hidden_field :book_id, value: @book.id
+                    = f.submit "Add to Cart", class: "btn btn-primary",render: 'nav'

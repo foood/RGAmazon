@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150201041146) do
+ActiveRecord::Schema.define(version: 20150202145922) do
 
   create_table "addresses", force: true do |t|
     t.text     "address"
@@ -100,10 +100,14 @@ ActiveRecord::Schema.define(version: 20150201041146) do
     t.integer  "order_status_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "shipping_address_id"
+    t.integer  "billing_address_id"
   end
 
+  add_index "orders", ["billing_address_id"], name: "index_orders_on_billing_address_id"
   add_index "orders", ["credit_card_id"], name: "index_orders_on_credit_card_id"
   add_index "orders", ["order_status_id"], name: "index_orders_on_order_status_id"
+  add_index "orders", ["shipping_address_id"], name: "index_orders_on_shipping_address_id"
   add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
   create_table "ratings", force: true do |t|

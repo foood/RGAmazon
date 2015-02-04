@@ -9,7 +9,7 @@ RGAmazon::Application.routes.draw do
 
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
 
-    root to: 'books#index'
+    root to: 'home#index'
 
     resources :books
     resources :authors

@@ -25,10 +25,5 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
   end
 
- def by_category(category)
-   @category_id = Category.find_by(title: category)
-    Book.find_all_by(category: @category_id)
-
- end
 
 end

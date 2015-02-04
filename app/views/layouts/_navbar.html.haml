@@ -11,6 +11,8 @@
     / Collect the nav links, forms, and other content for toggling
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav
+        %li
+          = link_to "Library",books_path
         %li.dropdown
           %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
             Category
@@ -20,8 +22,6 @@
               %li
                 %a= link_to_unless_current "#{category.title}", books_path(category: category)
 
-        %li
-          %a{:href => "#"} Link
       %form.navbar-form.navbar-left{:role => "search"}
         .form-group
           %input.form-control{:placeholder => "Search", :type => "text"}

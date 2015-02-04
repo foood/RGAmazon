@@ -16,7 +16,7 @@
           Unit Price:
           %span{:style => "color: green"}= number_to_currency book.price
         .input-group
-          = f.number_field :quantity, value: 1, class: "form-control", min: 1
+          = f.number_field :quantity, value: 1, class: "form-control", min: 1, max: book.stock
           .input-group-btn
             = f.hidden_field :book_id, value: book.id
             = f.submit "Add to Cart", class: "btn btn-primary",render: 'nav'
