@@ -34,6 +34,7 @@ gem 'carrierwave'
 #An interface to the ImageMagick and GraphicsMagick image processing libraries. https://github.com/minimagick/minimagick
 gem 'mini_magick'
 
+gem 'owlcarousel-rails' #https://github.com/acrogenesis/owlcarousel-rails
 #HTML abstraction markup language. http://haml.info
 gem 'haml-rails'
 gem 'erb2haml'

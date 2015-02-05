@@ -1,1 +1,8 @@
-%h1 Home#index
+%body
+  .container
+    .row
+      .col-sm-12
+        #owl-demo
+          - @books.each do |book|
+            = link_to book_path(book.id) do
+              %div=image_tag book.image_url(:medium),class: "lazyOwl"
