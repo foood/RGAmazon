@@ -4,8 +4,8 @@ source 'http://rubygems.org'
 gem 'rails', '4.0.5'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-
+#gem 'sqlite3'
+gem 'pg'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -70,14 +70,14 @@ group :development, :test do
   gem 'seed_dump'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'faker'
-  gem 'capybara' #acceptance test framework for web applications. https://github.com/jnicklas/capybara
 end
 
 group :test do
+  gem 'capybara' #acceptance test framework for web applications. https://github.com/jnicklas/capybara
+  gem "launchy" #save_and_open_page
   gem 'database_cleaner'
   gem 'shoulda-matchers' #collection of testing matchers extracted from Shoulda. https://github.com/thoughtbot/shoulda-matchers
-  gem 'shoulda'
+  gem 'faker'
 end
 
 

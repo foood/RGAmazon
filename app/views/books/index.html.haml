@@ -1,11 +1,9 @@
 
-%html
-  %body
-    .container
-      %ol.breadcrumb
-        %li
-          %a= link_to "Home",root_path
-          %li.active=  "Library"
-      .row
-      - @books.each do |book|
-        = render "book_row", book: book, order_item: @order_item
+.container
+  %ol.breadcrumb
+    %li
+      %a= link_to "Home",root_path
+      %li.active=  "Library"
+  .row
+  - @books.each do |book|
+    = render "book_row", book: book, order_item: @order_item

@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20150202145922) do
     t.datetime "updated_at"
   end
 
-  add_index "addresses", ["country_id"], name: "index_addresses_on_country_id"
+  add_index "addresses", ["country_id"], name: "index_addresses_on_country_id", using: :btree
 
   create_table "authors", force: true do |t|
     t.string   "first_name"
@@ -45,8 +45,8 @@ ActiveRecord::Schema.define(version: 20150202145922) do
     t.string   "image"
   end
 
-  add_index "books", ["author_id"], name: "index_books_on_author_id"
-  add_index "books", ["category_id"], name: "index_books_on_category_id"
+  add_index "books", ["author_id"], name: "index_books_on_author_id", using: :btree
+  add_index "books", ["category_id"], name: "index_books_on_category_id", using: :btree
 
   create_table "categories", force: true do |t|
     t.text     "title"
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 20150202145922) do
     t.datetime "updated_at"
   end
 
-  add_index "credit_cards", ["user_id"], name: "index_credit_cards_on_user_id"
+  add_index "credit_cards", ["user_id"], name: "index_credit_cards_on_user_id", using: :btree
 
   create_table "order_items", force: true do |t|
     t.float    "price"
@@ -83,8 +83,8 @@ ActiveRecord::Schema.define(version: 20150202145922) do
     t.datetime "updated_at"
   end
 
-  add_index "order_items", ["book_id"], name: "index_order_items_on_book_id"
-  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id"
+  add_index "order_items", ["book_id"], name: "index_order_items_on_book_id", using: :btree
+  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
 
   create_table "order_statuses", force: true do |t|
     t.string   "name"
@@ -104,11 +104,11 @@ ActiveRecord::Schema.define(version: 20150202145922) do
     t.integer  "billing_address_id"
   end
 
-  add_index "orders", ["billing_address_id"], name: "index_orders_on_billing_address_id"
-  add_index "orders", ["credit_card_id"], name: "index_orders_on_credit_card_id"
-  add_index "orders", ["order_status_id"], name: "index_orders_on_order_status_id"
-  add_index "orders", ["shipping_address_id"], name: "index_orders_on_shipping_address_id"
-  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
+  add_index "orders", ["billing_address_id"], name: "index_orders_on_billing_address_id", using: :btree
+  add_index "orders", ["credit_card_id"], name: "index_orders_on_credit_card_id", using: :btree
+  add_index "orders", ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
+  add_index "orders", ["shipping_address_id"], name: "index_orders_on_shipping_address_id", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "ratings", force: true do |t|
     t.text     "review"
@@ -119,8 +119,8 @@ ActiveRecord::Schema.define(version: 20150202145922) do
     t.datetime "updated_at"
   end
 
-  add_index "ratings", ["book_id"], name: "index_ratings_on_book_id"
-  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
+  add_index "ratings", ["book_id"], name: "index_ratings_on_book_id", using: :btree
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -157,8 +157,8 @@ ActiveRecord::Schema.define(version: 20150202145922) do
     t.string   "avatar"
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

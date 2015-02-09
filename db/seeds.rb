@@ -1,6 +1,28 @@
-User.create!([
-  {email: "john@doe.net", encrypted_password: "$2a$10$S/ajX09WtWy7pNsAU9R9/Oy8nU2y4FERhoakUXlRbm6vz9w/SEK5W", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2015-02-02 15:09:03", last_sign_in_at: "2015-02-02 15:09:03", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", provider: nil, uid: nil, first_name: "john", last_name: "doe", confirmation_token: nil, confirmed_at: nil, confirmation_sent_at: nil, failed_attempts: 0, unlock_token: nil, locked_at: nil, role_id: 1, oauth_token: nil, oauth_expires_at: nil, avatar: nil}
-])
+User.find_or_create_by(email: 'john@doe.net') do |user|
+  user.first_name = "john"
+  user.last_name  = "doe"
+  user.password = "doe123123"
+end
+Category.create!([
+                     {title: "Learning Rails"},
+                     {title: "Uncategorized"},
+                     {title: "Fantasy"},
+                     {title: "History"},
+                     {title: "Humor"}
+                 ])
+OrderStatus.create!([
+                        {name: "In Progress"},
+                        {name: "In queue"},
+                        {name: "In delivery"},
+                        {name: "Delivered"},
+                        {name: "Cancelled"}
+                    ])
+Role.create!([
+                 {name: "customer"},
+                 {name: "banned"},
+                 {name: "moderator"},
+                 {name: "admin"}
+             ])
 Author.create!([
   {first_name: "Kevin", last_name: "Faustino", biography: "Kevin is founder and chief craftsman of Remarkable Labs, based in Toronto, Canada. He believes that software should not just work but be well crafted. He founded Remarkable Labs because he wanted to build a company that he would be proud to work for and that other companies would love to work with."},
   {first_name: "john", last_name: "doe", biography: nil},
@@ -18,23 +40,4 @@ Book.create!([
   {title: "Flashpoints: The Emerging Crisis in Europe", description: "A major new book by New York Times bestselling author and geopolitical forecaster George Friedman (The Next 100 Years), with a bold thesis about coming events in Europe. This provocative work examines “flashpoints,” unique geopolitical hot spots where tensions have erupted throughout history, and where conflict is due to emerge again.", price: 21.11, stock: 10, category_id: 4, author_id: 2, image: "51DN1xRo-EL.jpg"},
   {title: "life.love.beauty", description: "“This book takes you on a photographic voyage through my life so far.” –Keegan Allen\r\n\r\nKeegan Allen is currently known to fans of the ABC Family hit television series, Pretty Little Liars. He has also appeared in numerous independent films and made his New York Stage debut in the acclaimed MCC production of Small Engine Repair.\r\nKeegan was given his first camera at age nine, and began a lifelong study and pursuit of photography.  life.love.beauty is a selection of photographs taken since his childhood. ", price: 20.99, stock: 10, category_id: 5, author_id: 2, image: "91k4C85X61L.jpg"}
 ])
-Category.create!([
-  {title: "Learning Rails"},
-  {title: "Uncategorized"},
-  {title: "Fantasy"},
-  {title: "History"},
-  {title: "Humor"}
-])
-OrderStatus.create!([
-  {name: "In Progress"},
-  {name: "In queue"},
-  {name: "In delivery"},
-  {name: "Delivered"},
-  {name: "Cancelled"}
-])
-Role.create!([
-  {name: "customer"},
-  {name: "banned"},
-  {name: "moderator"},
-  {name: "admin"}
-])
+

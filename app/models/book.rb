@@ -15,6 +15,7 @@ class Book < ActiveRecord::Base
 
   def no_author
     Author.find_or_create_by(first_name: 'john') do |author|
+      author.first_name = 'john'
       author.last_name = 'doe'
     end
     self.author = Author.find_by(first_name: 'john' )
@@ -23,5 +24,9 @@ class Book < ActiveRecord::Base
   def uncategorized
     Category.find_or_create_by(title: 'Uncategorized')
     self.category = Category.find_by_title('Uncategorized') if self.category == nil
+  end
+
+  def best_books
+    self.all.where(id: OrderItem.sum_quantity.book_id)
   end
 end

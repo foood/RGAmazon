@@ -11,7 +11,7 @@
       %h5
         Category:
         = book.category.title if book.category
-      = form_for order_item, remote: true do |f|
+      = form_for OrderItem.create do |f|
         %h4.text-right
           Unit Price:
           %span{:style => "color: green"}= number_to_currency book.price
@@ -19,4 +19,4 @@
           = f.number_field :quantity, value: 1, class: "form-control", min: 1, max: book.stock
           .input-group-btn
             = f.hidden_field :book_id, value: book.id
-            = f.submit "Add to Cart", class: "btn btn-primary",render: 'nav'
+            = f.submit "Add to Cart", class: "btn btn-primary"

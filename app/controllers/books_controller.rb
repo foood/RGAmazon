@@ -6,7 +6,6 @@ class BooksController < ApplicationController
     else
       @books = Book.all
     end
-    @order_item = current_order.order_items.new
 
     respond_to do |format|
       format.html
