@@ -18,4 +18,4 @@
 # Ignore Rubymine folder
 .idea
 /public/uploads/*
-/config/database.yml
+database.yml

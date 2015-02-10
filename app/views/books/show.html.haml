@@ -22,7 +22,7 @@
     .col-md-5.col-md-offset-3
       %hr
         %aside
-          = form_for  OrderItem.new, remote: true do |f|
+          = form_for  OrderItem.create do |f|
             %h4.text-right
               Unit Price:
               %span{:style => "color: green"}= number_to_currency @book.price

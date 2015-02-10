@@ -6,12 +6,9 @@ class OrderItem < ActiveRecord::Base
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
 
-  def best_order_items
 
-  end
-
-  def sum_quantity
-    OrderItem.group(:book_id).sum(:quantity)
+  def self.best_books
+    group(:book_id).sum(:quantity).sort_by {|book_id, quantity| quantity}.last(5).to_h.keys
 
   end
 

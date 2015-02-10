@@ -7,8 +7,8 @@ class Book < ActiveRecord::Base
   has_many :ratings
   has_many :order_items, dependent: :destroy
 
-  before_create :no_author
-  before_save :uncategorized
+
+  before_save :uncategorized, :no_author
   validates :title, presence: {:message => 'Title cannot be blank'}
   validates :price, presence: {:message => 'Price cannot be blank'}
   validates :stock, presence: {:message => 'Stock cannot be blank'}
@@ -18,7 +18,7 @@ class Book < ActiveRecord::Base
       author.first_name = 'john'
       author.last_name = 'doe'
     end
-    self.author = Author.find_by(first_name: 'john' )
+    self.author = Author.find_by(first_name: 'john' ) if self.category == nil
   end
 
   def uncategorized
@@ -26,7 +26,7 @@ class Book < ActiveRecord::Base
     self.category = Category.find_by_title('Uncategorized') if self.category == nil
   end
 
-  def best_books
-    self.all.where(id: OrderItem.sum_quantity.book_id)
+  def self.best_books
+   where(id: OrderItem.best_books)
   end
 end
