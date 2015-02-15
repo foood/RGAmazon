@@ -7,7 +7,7 @@ class CreateAddresses < ActiveRecord::Migration
       t.string :phone
       t.references :country, index: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

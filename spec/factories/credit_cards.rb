@@ -6,7 +6,6 @@ FactoryGirl.define do
     expiration_year 2016
     first_name {Faker::Name.first_name}
     last_name {Faker::Name.last_name}
-    customer {FactoryGirl.create :customer}
   end
 
 end

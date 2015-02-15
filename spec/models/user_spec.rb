@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do
-  let(:role) {FactoryGirl.create :role}
 
   it { should belong_to :role }
   it { should have_many :orders }

@@ -8,7 +8,7 @@ class CreateOrders < ActiveRecord::Migration
       t.references :credit_card, index: true
       t.references :order_status, index: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

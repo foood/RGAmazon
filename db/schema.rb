@@ -13,54 +13,57 @@
 
 ActiveRecord::Schema.define(version: 20150202145922) do
 
-  create_table "addresses", force: true do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
     t.text     "address"
     t.integer  "zip_code"
     t.string   "city"
     t.string   "phone"
     t.integer  "country_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "addresses", ["country_id"], name: "index_addresses_on_country_id", using: :btree
 
-  create_table "authors", force: true do |t|
+  create_table "authors", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.text     "biography"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "books", force: true do |t|
+  create_table "books", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.float    "price"
     t.integer  "stock"
     t.integer  "category_id"
     t.integer  "author_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "image"
   end
 
   add_index "books", ["author_id"], name: "index_books_on_author_id", using: :btree
   add_index "books", ["category_id"], name: "index_books_on_category_id", using: :btree
 
-  create_table "categories", force: true do |t|
+  create_table "categories", force: :cascade do |t|
     t.text     "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "countries", force: true do |t|
+  create_table "countries", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "credit_cards", force: true do |t|
+  create_table "credit_cards", force: :cascade do |t|
     t.integer  "number"
     t.integer  "ccv"
     t.integer  "expiration_month"
@@ -68,38 +71,38 @@ ActiveRecord::Schema.define(version: 20150202145922) do
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   add_index "credit_cards", ["user_id"], name: "index_credit_cards_on_user_id", using: :btree
 
-  create_table "order_items", force: true do |t|
+  create_table "order_items", force: :cascade do |t|
     t.float    "price"
     t.integer  "quantity"
     t.integer  "book_id"
     t.integer  "order_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "order_items", ["book_id"], name: "index_order_items_on_book_id", using: :btree
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
 
-  create_table "order_statuses", force: true do |t|
+  create_table "order_statuses", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "orders", force: true do |t|
+  create_table "orders", force: :cascade do |t|
     t.float    "amount"
     t.datetime "completed_date"
     t.integer  "user_id"
     t.integer  "credit_card_id"
     t.integer  "order_status_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.integer  "shipping_address_id"
     t.integer  "billing_address_id"
   end
@@ -110,25 +113,25 @@ ActiveRecord::Schema.define(version: 20150202145922) do
   add_index "orders", ["shipping_address_id"], name: "index_orders_on_shipping_address_id", using: :btree
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
-  create_table "ratings", force: true do |t|
+  create_table "ratings", force: :cascade do |t|
     t.text     "review"
     t.integer  "rating"
     t.integer  "user_id"
     t.integer  "book_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "ratings", ["book_id"], name: "index_ratings_on_book_id", using: :btree
   add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
 
-  create_table "roles", force: true do |t|
+  create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -139,8 +142,8 @@ ActiveRecord::Schema.define(version: 20150202145922) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "provider"
     t.string   "uid"
     t.string   "first_name"

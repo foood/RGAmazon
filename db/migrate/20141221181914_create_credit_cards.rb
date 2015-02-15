@@ -9,7 +9,7 @@ class CreateCreditCards < ActiveRecord::Migration
       t.string :last_name
       t.references :user, index: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

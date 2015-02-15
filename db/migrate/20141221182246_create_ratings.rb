@@ -6,7 +6,7 @@ class CreateRatings < ActiveRecord::Migration
       t.references :user, index: true
       t.references :book, index: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

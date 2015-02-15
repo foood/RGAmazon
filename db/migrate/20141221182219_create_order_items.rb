@@ -6,7 +6,7 @@ class CreateOrderItems < ActiveRecord::Migration
       t.references :book, index: true
       t.references :order, index: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

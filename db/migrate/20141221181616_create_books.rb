@@ -8,7 +8,7 @@ class CreateBooks < ActiveRecord::Migration
       t.references :category, index: true
       t.references :author, index: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

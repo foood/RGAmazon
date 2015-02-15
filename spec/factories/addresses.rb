@@ -4,7 +4,6 @@ FactoryGirl.define do
     zip_code {Faker::Address.zip_code }
     city  { Faker::Address.city }
     phone {Faker::PhoneNumber.cell_phone }
-    country {FactoryGirl.create :country}
   end
 
 end

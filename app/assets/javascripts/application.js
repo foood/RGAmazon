@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
 //= require owl.carousel
 //= require initialize
 //= require_tree .

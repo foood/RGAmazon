@@ -3,7 +3,7 @@ class CreateOrderStatuses < ActiveRecord::Migration
     create_table :order_statuses do |t|
       t.string :name
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end
