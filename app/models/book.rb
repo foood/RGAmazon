@@ -39,7 +39,6 @@ class Book < ActiveRecord::Base
              .group('books.id')
              .order('qty DESC')
              .limit(count)
-  rescue ActiveRecord::RecordNotFound
     where(id: @book_id.take(count)).reverse
 
   end
