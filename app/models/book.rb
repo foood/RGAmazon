@@ -13,6 +13,8 @@ class Book < ActiveRecord::Base
   validates :price, presence: {:message => 'Price cannot be blank'}
   validates :stock, presence: {:message => 'Stock cannot be blank'}
 
+  @number_of_best_books = 4
+
   def no_author
     Author.find_or_create_by(first_name: 'john') do |author|
       author.first_name = 'john'
@@ -26,7 +28,16 @@ class Book < ActiveRecord::Base
     self.category = Category.find_by_title('Uncategorized') if self.category == nil
   end
 
+
+
   def self.best_books
-   where(id: OrderItem.best_books)
+    @books = Book.select('books.id', 'sum(quantity) as qty')
+                 .joins(:order_items)
+                 .group('books.id')
+                 .order('qty DESC')
+                 .limit(@number_of_best_books)
+
+    where(id: @books.take(@number_of_best_books)).reverse
+
   end
 end

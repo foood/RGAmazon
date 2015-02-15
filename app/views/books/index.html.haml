@@ -5,5 +5,5 @@
       %a= link_to "Home",root_path
       %li.active=  "Library"
   .row
-  - @books.each do |book|
-    = render "book_row", book: book, order_item: @order_item
+    - @books.each do |book|
+      = render "book_row", book: book, order_item: @order_item

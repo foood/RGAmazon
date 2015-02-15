@@ -19,3 +19,4 @@
 .idea
 /public/uploads/*
 database.yml
+Gemfile.lock

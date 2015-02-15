@@ -16,4 +16,7 @@ feature "Registration", :devise do
     expect(page).not_to have_content 'Sign up'
 
   end
+  scenario "Visitor registers successfully via facebook" do
+
+  end
 end
