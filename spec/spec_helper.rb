@@ -14,7 +14,6 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-require 'factory_girl_rails'
 
 RSpec.configure do |config|
   # This part turns off the default RSpec database cleansing strategy.

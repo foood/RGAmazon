@@ -18,9 +18,14 @@ RSpec.describe Book, :type => :model do
   it "is valid without an category" do
     expect(build :book, category: nil).to be_valid
   end
-  it "is valid without an category" do
+  it "is set default category" do
     book = create :book, category_id: nil
-    expect(book.category).to eq(1)
+    expect(book.category.title).to eq("Uncategorized")
+  end
+
+  it "is set default author" do
+    book = create :book, author_id: nil
+    expect(book.author.first_name).to eq("john")
   end
 
 end

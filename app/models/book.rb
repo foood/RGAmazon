@@ -34,12 +34,7 @@ class Book < ActiveRecord::Base
 
 
   def self.best_books(count)
-    @book_id = select('books.id', 'sum(quantity) as qty')
-             .joins(:order_items)
-             .group('books.id')
-             .order('qty DESC')
-             .limit(count)
-    where(id: @book_id.take(count)).reverse
+    joins(:order_items).group('books.id').order('sum(quantity)  DESC').limit(count)
 
   end
 end

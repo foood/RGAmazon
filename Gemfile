@@ -70,13 +70,14 @@ group :development, :test do
   gem 'seed_dump'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem "spring-commands-rspec"
 end
 
 group :test do
   gem 'capybara' #acceptance test framework for web applications. https://github.com/jnicklas/capybara
   gem "launchy" #save_and_open_page
   gem 'database_cleaner'
-  gem 'shoulda-matchers' #collection of testing matchers extracted from Shoulda. https://github.com/thoughtbot/shoulda-matchers
+  gem 'shoulda-matchers', require: false #collection of testing matchers extracted from Shoulda. https://github.com/thoughtbot/shoulda-matchers
   gem 'faker'
 end
 
