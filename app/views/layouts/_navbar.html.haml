@@ -29,7 +29,7 @@
         %button.btn.btn-default{:type => "submit"} Submit
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
-          %li= link_to "Hello #{current_user.first_name}"
+          %li= link_to "Hello #{current_user.first_name}",edit_user_path(current_user)
           %li= image_tag(current_user.avatar.url) if current_user.avatar?
           %li= link_to 'Logout', destroy_user_session_path, :method => :delete
           %li= link_to "Admin panel", rails_admin.index_path('Book') if current_user.admin?

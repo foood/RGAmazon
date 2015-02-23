@@ -5,12 +5,17 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :ratings
   has_many :credit_cards
+  has_one :billing_address, :class_name => "Address"
+  has_one :shipping_address, :class_name => "Address"
+  accepts_nested_attributes_for :billing_address, :allow_destroy => true
+  accepts_nested_attributes_for :shipping_address, :allow_destroy => true
+
 
   before_create :set_default_role
 
   validates :first_name, presence: {:message => 'First name cannot be blank'}
   validates :last_name,  presence: {:message => 'Last name cannot be blank'}
-  validates :password,   presence: {:message => 'Password cannot be blank'}
+  #validates :password,   presence: {:message => 'Password cannot be blank'}
   validates :email,      presence: {:message => 'Email cannot be blank'},
                        uniqueness: {:message => 'This email is already in use'}
 

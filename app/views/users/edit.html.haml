@@ -1,0 +1,5 @@
+
+= simple_form_for @billing_address, url: user_path do |ff|
+  = ff.input :zip_code
+  = ff.input :address
+  = ff.button :submit, "Update"

@@ -1,5 +1,7 @@
 RGAmazon::Application.routes.draw do
 
+
+
   devise_for :users, :controllers => { registrations: 'registrations',:omniauth_callbacks => "users/omniauth_callbacks" }
 
 
@@ -14,8 +16,8 @@ RGAmazon::Application.routes.draw do
     resources :books
     resources :authors
     resources :categories
-    resources :users
-    resources :orders
+    resources :users, only: [:edit, :update, :destroy]
+    resources :orders, only: [:index, :show, :update]
     resources :adresses
     resource :cart, only: [:show]
     resources :order_items, only: [:create, :update, :destroy]

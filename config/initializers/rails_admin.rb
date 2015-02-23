@@ -17,11 +17,11 @@ RailsAdmin.config do |config|
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
   #config.included_models = ["Book", "Author", "Category", "Order"]
-   config.model 'Order' do
-     edit do
-       field :order_status
-     end
-   end
+  # config.model 'Order' do
+   #  edit do
+   #    field :order_status
+    # end
+  # end
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
