@@ -1,5 +1,12 @@
 
-= simple_form_for @billing_address, url: user_path do |ff|
-  = ff.input :zip_code
-  = ff.input :address
-  = ff.button :submit, "Update"
+
+= simple_form_for current_user do |f|
+  = f.simple_fields_for @billing_address, :billing_address do |ba|
+    = ba.text_field :zip_code
+    = ba.text_field :address
+    = ba.button :submit
+
+  = f.simple_fields_for @shipping_address, :shipping_address  do |sa|
+    = sa.text_field :zip_code
+    = sa.text_field :address
+    = sa.button :submit

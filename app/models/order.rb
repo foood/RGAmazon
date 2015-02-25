@@ -2,9 +2,11 @@ class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :credit_card
   belongs_to :order_status
-  belongs_to :billing_address, :class_name => "Address"
-  belongs_to :shipping_address, :class_name => "Address"
   has_many :order_items, dependent: :destroy
+  belongs_to :billing_address, :class_name => "Address", :foreign_key => "billing_address_id"
+  belongs_to :shipping_address, :class_name => "Address", :foreign_key => "shipping_address_id"
+  accepts_nested_attributes_for :billing_address, :allow_destroy => true
+  accepts_nested_attributes_for :shipping_address, :allow_destroy => true
 
   before_validation :update_subtotal, :set_order_status
 

@@ -1,14 +1,13 @@
 class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
-
   belongs_to :role
   has_many :orders
   has_many :ratings
   has_many :credit_cards
   has_one :billing_address, :class_name => "Address"
   has_one :shipping_address, :class_name => "Address"
-  accepts_nested_attributes_for :billing_address, :allow_destroy => true
   accepts_nested_attributes_for :shipping_address, :allow_destroy => true
+  accepts_nested_attributes_for :billing_address,  :allow_destroy => true
 
 
   before_create :set_default_role
@@ -29,6 +28,17 @@ class User < ActiveRecord::Base
       self.role ||= Role.find_by_name('customer')
 
   end
+
+
+  def self.billing_address
+    billing_address.where(address_type: 'Billing')
+  end
+
+  def self.shipping_address
+    shipping_address.where(address_type: 'Shipping')
+  end
+
+
 
   def self.from_omniauth(auth)
     user = find_by(auth.slice(:provider, :uid)) || initialize_from_omniauth(auth)
