@@ -17,7 +17,7 @@ RGAmazon::Application.routes.draw do
     resources :authors
     resources :categories
     resources :users, only: [:edit, :update, :destroy]
-    resources :orders, only: [:index, :show, :update]
+    resources :orders, only: [:index, :show, :update, :edit]
     resources :adresses
     resource :cart, only: [:show]
     resources :order_items, only: [:create, :update, :destroy]

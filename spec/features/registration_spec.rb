@@ -17,6 +17,5 @@ feature "Registration", :devise do
 
   end
   scenario "Visitor registers successfully via facebook" do
-
   end
 end

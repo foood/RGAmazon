@@ -7,16 +7,12 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user
-    @billing_address = BillingAddress.find_or_create_by(address_type: 'Billing',user_id: current_user.id)
-    @shipping_address = ShippingAddress.find_or_create_by(address_type: 'Shipping',user_id: current_user.id)
-    #current_user.shipping_address = current_user.billing_address if params[:checkbox_use_same_address] == true
 
   end
 
   def update
-    @user = User.find_by(id: current_user.id)
-   # @user.update_attributes(user_params)
-    @user.update_attributes(user_params)
+
+    current_user.update_attributes(update_user_params)
     redirect_to :back, notice: "Billing address has successfully changed"
   end
 
@@ -26,10 +22,14 @@ class UsersController < ApplicationController
 # Be sure to update your create() and update() controller methods.
 
   def user_params
-    params.require(:user).permit(:avatar, {shipping_address:[:zip_code, :address, :id]}, {billing_address:[:zip_code, :address, :id]})
+    params.require(:user).permit(:avatar, [:shipping_address, :billing_address])
   end
   def update_user_params
-    params.require(:user).permit(shipping_address_attributes:[:zip_code, :address, :id], billing_address_attributes:[:zip_code, :address, :id])
+    params.require(:user).permit(:email, :current_password, :password, :password_confirmation,
+                                 shipping_address_attributes:
+                                     [:address, :zip_code, :city, :phone, :first_name, :last_name, :country_id, :id],
+                                 billing_address_attributes:
+                                     [:address, :zip_code, :city, :phone, :first_name, :last_name,:country_id, :id])
   end
 
 

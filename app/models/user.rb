@@ -4,13 +4,13 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :ratings
   has_many :credit_cards
-  has_one :billing_address, :class_name => "Address"
-  has_one :shipping_address, :class_name => "Address"
+  has_one :billing_address, dependent: :destroy
+  has_one :shipping_address, dependent: :destroy
   accepts_nested_attributes_for :shipping_address, :allow_destroy => true
   accepts_nested_attributes_for :billing_address,  :allow_destroy => true
 
 
-  before_create :set_default_role
+  before_create :set_default_role, :set_addresses
 
   validates :first_name, presence: {:message => 'First name cannot be blank'}
   validates :last_name,  presence: {:message => 'Last name cannot be blank'}
@@ -26,18 +26,14 @@ class User < ActiveRecord::Base
 
   def set_default_role
       self.role ||= Role.find_by_name('customer')
-
   end
-
-
-  def self.billing_address
-    billing_address.where(address_type: 'Billing')
+  def full_name
+    "#{first_name.first}. #{last_name}"
   end
-
-  def self.shipping_address
-    shipping_address.where(address_type: 'Shipping')
+  def set_addresses
+    self.shipping_address = ShippingAddress.find_or_create_by(user_id: self.id)
+    self.billing_address = BillingAddress.find_or_create_by(user_id: self.id)
   end
-
 
 
   def self.from_omniauth(auth)

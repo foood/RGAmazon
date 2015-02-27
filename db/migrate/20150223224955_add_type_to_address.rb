@@ -1,5 +1,5 @@
 class AddTypeToAddress < ActiveRecord::Migration
   def change
-    add_column :addresses, :address_type, :string
+    add_column :addresses, :type, :string
   end
 end

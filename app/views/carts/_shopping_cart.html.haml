@@ -9,3 +9,15 @@
 - else
   - @order_items.each do |order_item|
     = render 'carts/cart_row', book: order_item.book, order_item: order_item, show_total: true
+
+  - if current_user
+    =link_to  'Checkout' ,edit_order_path(current_user.id), class: "btn btn-default"
+
+  - else
+    = link_to "Checkout", new_user_registration_path, { data: { confirm: "You Must Signup or Login! Sign up now?" }, class: "btn btn-default" }
+
+  = link_to "Empty cart", "", { data: { confirm: "Are you sure you wish to delete all books from your cart?" }, method: :destroy_all, class: "btn btn-danger" }
+  = link_to 'continue shopping',books_path , class: "btn btn-default"
+  = form_for :coupon do |c|
+    = c.text_field '',:placeholder =>'Coupon code'
+    = c.button :submit

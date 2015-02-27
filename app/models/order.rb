@@ -3,8 +3,8 @@ class Order < ActiveRecord::Base
   belongs_to :credit_card
   belongs_to :order_status
   has_many :order_items, dependent: :destroy
-  belongs_to :billing_address, :class_name => "Address", :foreign_key => "billing_address_id"
-  belongs_to :shipping_address, :class_name => "Address", :foreign_key => "shipping_address_id"
+  belongs_to :billing_address,  :foreign_key => "billing_address_id"
+  belongs_to :shipping_address, :foreign_key => "shipping_address_id"
   accepts_nested_attributes_for :billing_address, :allow_destroy => true
   accepts_nested_attributes_for :shipping_address, :allow_destroy => true
 
@@ -14,7 +14,6 @@ class Order < ActiveRecord::Base
 
 
   validates :amount, :order_status, presence: true
-
   def subtotal
     order_items.collect { |items| items.valid? ? (items.quantity * items.price) : 0 }.sum
   end

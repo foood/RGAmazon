@@ -1,8 +1,7 @@
 
 .center
-  %h2  #{current_user.full_name} Profile
   .row
-    = simple_form_for @user  do |f|
+    = simple_form_for current_order  do |f|
       .col-md-6
         %h2 Billing address
         = f.simple_fields_for :billing_address  do |address|
@@ -13,6 +12,4 @@
           = render 'addresses/address_form', address: address
         .form-actions
       .col-md-6
-        = f.input :email
         = f.button :submit, 'Update profile'
-      #{link_to "Cancel my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete}
