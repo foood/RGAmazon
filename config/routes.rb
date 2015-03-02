@@ -19,7 +19,9 @@ RGAmazon::Application.routes.draw do
     resources :users, only: [:edit, :update, :destroy]
     resources :orders, only: [:index, :show, :update, :edit]
     resources :adresses
-    resource :cart, only: [:show]
+    resource :cart do
+      post 'empty', to: 'carts#empty'
+    end
     resources :order_items, only: [:create, :update, :destroy]
 
   end

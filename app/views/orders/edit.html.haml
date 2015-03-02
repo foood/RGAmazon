@@ -1,15 +1,28 @@
+.container
+
 
 .center
+  %ol.breadcrumb
+    Checkout
+    %li
+      %li=  "ADDRESS"
+      %li.active=  "DELIVERY"
+      %li.active=  "PAYMENT"
+      %li.active=  "CONFIRM"
+      %li.active=  "COMPLETE"
   .row
-    = simple_form_for current_order  do |f|
+    = simple_form_for @order  do |f|
       .col-md-6
         %h2 Billing address
         = f.simple_fields_for :billing_address  do |address|
           = render 'addresses/address_form', address: address
       .col-md-6
         %h2 Shipping address
-        = f.simple_fields_for :shipping_address  do |address|
-          = render 'addresses/address_form', address: address
+        %h4
+        = f.check_box :bill_to_shipp
+        #ship_div
+          = f.simple_fields_for :shipping_address  do |address|
+            = render 'addresses/address_form', address: address
         .form-actions
       .col-md-6
-        = f.button :submit, 'Update profile'
+        = f.button :submit, 'next'

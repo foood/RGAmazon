@@ -16,7 +16,7 @@
   - else
     = link_to "Checkout", new_user_registration_path, { data: { confirm: "You Must Signup or Login! Sign up now?" }, class: "btn btn-default" }
 
-  = link_to "Empty cart", "", { data: { confirm: "Are you sure you wish to delete all books from your cart?" }, method: :destroy_all, class: "btn btn-danger" }
+  = link_to "Empty cart" ,empty_cart_path , { data: { confirm: "Are you sure you wish to delete all books from your cart?" }, method: :destroy_all, class: "btn btn-danger" }
   = link_to 'continue shopping',books_path , class: "btn btn-default"
   = form_for :coupon do |c|
     = c.text_field '',:placeholder =>'Coupon code'

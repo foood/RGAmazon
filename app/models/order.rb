@@ -8,8 +8,8 @@ class Order < ActiveRecord::Base
   accepts_nested_attributes_for :billing_address, :allow_destroy => true
   accepts_nested_attributes_for :shipping_address, :allow_destroy => true
 
-  before_validation :update_subtotal, :set_order_status
-
+  before_validation :update_subtotal, :set_status
+  before_create  :set_addresses
   before_save :update_subtotal, :set_completed_date
 
 
@@ -20,8 +20,14 @@ class Order < ActiveRecord::Base
 
   private
 
-  def set_order_status
-    self.order_status ||= OrderStatus.find_by_name('In Progress')
+  def set_addresses
+    self.shipping_address = ShippingAddress.find_by(user_id: self.user_id)
+    self.billing_address = BillingAddress.find_by(user_id: self.user_id)
+
+  end
+
+  def set_status
+    self.order_status ||= OrderStatus.find_by_name('In Progress') if self.order_status.nil?
 
   end
 
